@@ -19,6 +19,13 @@ router.post('/', (req, res, next) => {
     console.log('req is :', req.body)
     let newPage = {
         title : req.body.title,
+        urlTitle : function generateUrlTitle (title) {
+            if (title) {
+                return title.replace(/\s+/g, '_').replace(/\W/g, '');
+            } else {
+                return Math.random().toString(36).substring(2, 7);
+            }
+        },
         content : req.body.pageContent,
         status : req.body.pageStatus
     }
